@@ -59,9 +59,6 @@ const App = () => {
     getData3();
   }, []);
 
-  setTimeout(()=>{
-    console.log("data",data)
-  }, 5000);
 
   return (
     <div>
