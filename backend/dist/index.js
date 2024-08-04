@@ -9,7 +9,7 @@ var app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.get("/api/1", function (req, res) {
-    res.send("Hello World! this is Ajay");
+    res.send("Hello World! this is test for google project idx");
 });
 app.get("/api", function (req, res) {
     res.send("Hello World! this is Ajay from /api route");

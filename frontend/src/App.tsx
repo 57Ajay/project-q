@@ -62,10 +62,10 @@ const App = () => {
   setTimeout(()=>{
     console.log("data",data)
   }, 5000);
-  
+
   return (
     <div>
-      <h1>Ajay is here</h1>
+      <h1>Hello! everyone</h1>
       <h2>Data1</h2>
       {data.data1.map((item, index) => (
         <p key={index}>{item}</p>

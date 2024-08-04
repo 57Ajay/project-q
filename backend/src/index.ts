@@ -8,7 +8,7 @@ app.use(cors())
 app.use(express.json());
 
 app.get("/api/1", (req, res) => {
-  res.send("Hello World! this is Ajay");
+  res.send("Hello World! this is test for google project idx");
 });
 app.get("/api", (req, res) => {
   res.send("Hello World! this is Ajay from /api route");
