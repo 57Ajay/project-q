@@ -1,51 +1,87 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const App = ()=>{
+type DataState = {
+  data1: any[];
+  data2: any[];
+  data3: any[];
+};
 
-  const [data, setData] = useState({
+const App = () => {
+  const [data, setData] = useState<DataState>({
     data1: [],
     data2: [],
-    data3: []
+    data3: [],
   });
+
   useEffect(() => {
-    const getData = async()=>{
-      const res = await axios.get("/api");
-      setData((prev)=>{
-        return {...prev, data1: res.data}
-      });
+    const getData = async () => {
+      try {
+        const res = await axios.get("/api");
+        setData((prev) => ({
+          ...prev,
+          data1: Array.isArray(res.data) ? res.data : [res.data],
+        }));
+      } catch (error) {
+        console.error("Error fetching data1:", error);
+      }
     };
-    getData()
+    getData();
   }, []);
 
   useEffect(() => {
-    const getData2 = async()=>{
-      const res = await axios.get("/api/1");
-      setData((prev)=>{
-        return {...prev, data2: res.data}
-      });
+    const getData2 = async () => {
+      try {
+        const res = await axios.get("/api/1");
+        setData((prev) => ({
+          ...prev,
+          data2: Array.isArray(res.data) ? res.data : [res.data],
+        }));
+      } catch (error) {
+        console.error("Error fetching data2:", error);
+      }
     };
-    getData2()
+    getData2();
   }, []);
 
   useEffect(() => {
-    const getData3 = async()=>{
-      const res = await axios.get("/api/2");
-      setData((prev)=>{
-        return {...prev, data3: res.data}
-      });
+    const getData3 = async () => {
+      try {
+        const res = await axios.get("/api/2");
+        setData((prev) => ({
+          ...prev,
+          data3: Array.isArray(res.data) ? res.data : [res.data],
+        }));
+      } catch (error) {
+        console.error("Error fetching data3:", error);
+      }
     };
-    getData3()
+    getData3();
   }, []);
-  console.log(data)
+
+  setTimeout(()=>{
+    console.log("data",data)
+  }, 5000);
+  
   return (
     <div>
       <h1>Ajay is here</h1>
-      <p>{data.data1}</p>
-      <p>{data.data2}</p>
-      <p>{data.data3}</p>
+      <h2>Data1</h2>
+      {data.data1.map((item, index) => (
+        <p key={index}>{item}</p>
+      ))}
+
+      <h2>Data2</h2>
+      {data.data2.map((item, index) => (
+        <p key={index}>{item}</p>
+      ))}
+
+      <h2>Data3</h2>
+      {data.data3.map((item, index) => (
+        <p key={index}>{item}</p>
+      ))}
     </div>
-  )
+  );
 };
 
 export default App;
